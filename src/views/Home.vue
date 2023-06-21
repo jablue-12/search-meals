@@ -16,15 +16,25 @@
             </router-link>
         </div>
     </div>
+
+    <pre>{{ ingredients }}</pre>
     
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import axiosClient from '../axiosClient.js'
 import store from '../store'
 
-const meals = computed(() => store.state.meals);
+let ingredients = ref([]);
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split("");
+
+// www.themealdb.com/api/json/v1/1/list.php?i=list
+onMounted(async () => {
+    const response = await axiosClient.get('list.php?i=list');
+    console.log(response.data);
+    ingredients = response.data;
+}); 
 
 </script>
 
