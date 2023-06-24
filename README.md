@@ -16,7 +16,7 @@
 ### Eslint & Prettier
 - Used the `Standard` eslint which can be found [here](https://github.com/standard/standard)
 - To see the rules, check the documentation at [eslint.org](https://eslint.org/docs/latest/use/getting-started)
-- To run the `eslint` command, open the `Powershell` as `Administrator and execute the command 
+- To run the `eslint` command, open the `Powershell` as `Administrator` and execute the command 
 ```
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 ```
