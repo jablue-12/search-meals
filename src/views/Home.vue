@@ -1,43 +1,40 @@
 <template>
-    <div class="flex flex-col p-8">
-        <div>
-            <input
-                type="text"
-                class="rounded border-2 border-gray-200 w-full"
-                placeholder="Search for meals"/>
-        </div>
-        
-        <div class="flex gap-1 justify-center gap-2 mt-2">
-            <router-link 
-                v-for="(letter,index) in letters"
-                :key="index"
-                :to="{name: 'byLetter', params: {letter}}" >
-                {{ letter }}
-            </router-link>
-        </div>
-    </div>
+	<div class="flex flex-col p-8">
+		<div>
+			<input
+				type="text"
+				class="rounded border-2 border-gray-200 w-full"
+				placeholder="Search for meals"
+			/>
+		</div>
 
-    <pre>{{ ingredients }}</pre>
-    
+		<div class="flex gap-1 justify-center gap-2 mt-2">
+			<router-link
+				v-for="(letter, index) in letters"
+				:key="index"
+				:to="{ name: 'byLetter', params: { letter } }"
+			>
+				{{ letter }}
+			</router-link>
+		</div>
+	</div>
+
+	<pre>{{ ingredients }}</pre>
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue'
-import axiosClient from '../axiosClient.js'
-import store from '../store'
+import { onMounted, ref } from 'vue';
+import axiosClient from '../axiosClient.js';
 
-let ingredients = ref([]);
-const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split("");
+const ingredients = ref([]);
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 // www.themealdb.com/api/json/v1/1/list.php?i=list
 onMounted(async () => {
-    const response = await axiosClient.get('list.php?i=list');
-    console.log(response.data);
-    ingredients = response.data;
-}); 
-
+	const response = await axiosClient.get('list.php?i=list');
+	console.log(response.data);
+	ingredients.value = response.data;
+});
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

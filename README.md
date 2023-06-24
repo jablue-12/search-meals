@@ -12,3 +12,16 @@
 [github-repo](https://github.com/public-apis/public-apis)
 
 [meals-api](https://www.themealdb.com/api.php)
+
+### Eslint & Prettier
+- Used the `Standard` eslint which can be found [here](https://github.com/standard/standard)
+- To see the rules, check the documentation at [eslint.org](https://eslint.org/docs/latest/use/getting-started)
+- To run the `eslint` command, open the `Powershell` as `Administrator and execute the command 
+```
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
+```
+- Make sure that CurrentUser is Unrestricted by executing: 
+```
+Get-ExecutionPolicy -List
+```
+- To see the rules for eslint and prettier used in this project, check [.eslintrc.json](.eslintrc.json) and [.prettierrc](.prettierrc)
