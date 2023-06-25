@@ -1,4 +1,5 @@
 <template>
+	<!-- TODO: add hamburger icon for mobile -->
     <header class="bg-white shadow-md h-16 flex justify-between items-stretch">
             <router-link :to="{name: 'home'}" class="inline-flex items-center h-full px-5">
                 Home
@@ -25,7 +26,7 @@
 </template>
 
 <script setup>
-
+// * TODO: add hamburger icon for mobile
 </script>
 
 <style lang="scss" scoped>
