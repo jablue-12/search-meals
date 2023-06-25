@@ -15,10 +15,13 @@
 			v-for="meal in meals"
 			:key="meal.idMeal"
 			class="bg-white shadow rounded-t-xl max-w-xs">
-			<img
-				class="rounded-t-xl h-48 object-cover w-full"
-				:alt="meal.strMeal"
-				:src="meal.strMealThumb">
+
+			<router-link to="/">
+				<img
+					class="rounded-t-xl h-48 object-cover w-full"
+					:alt="meal.strMeal"
+					:src="meal.strMealThumb">
+			</router-link>
 
 				<div class="px-3">
 					<h3 class="font-bold">{{ meal.strMeal }}</h3>
@@ -31,11 +34,6 @@
 							:href="meal.strYoutube"
 							target="_blank">Youtube
 						</a>
-						<router-link
-						class="px-3 py-2 rounded border border-purple-600 hover:bg-purple-600 hover:text-white transition-colors"
-							to="/">
-							View
-						</router-link>
 					</div>
 				</div>
 		</div>
@@ -43,14 +41,23 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import store from '../store';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
 const keyword = ref('');
 const meals = computed(() => store.state.searchedMeals);
 
 const searchMeals = () => {
 	store.dispatch('searchMeals', keyword.value);
 };
+
+onMounted(() => {
+	keyword.value = route.params.name;
+	if (keyword.value) {
+		searchMeals();
+	}
+});
 
 </script>
