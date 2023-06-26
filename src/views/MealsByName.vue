@@ -16,7 +16,7 @@
 			:key="meal.idMeal"
 			class="bg-white shadow rounded-t-xl max-w-xs">
 
-			<router-link to="/">
+			<router-link :to="{name: 'mealDetails', params: {id: meal.idMeal} }">
 				<img
 					class="rounded-t-xl h-48 object-cover w-full"
 					:alt="meal.strMeal"
@@ -25,8 +25,8 @@
 
 				<div class="px-3">
 					<h3 class="font-bold">{{ meal.strMeal }}</h3>
-					<p class="mb-4">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. At amet labore nisi voluptate laborum molestias dolorum molestiae aspernatur commodi accusamus quo.
+					<p class="mb-4 line-clamp-3">
+						{{ meal.strInstructions }}
 					</p>
 					<div class="mb-4 flex justify-between items-center">
 						<a
