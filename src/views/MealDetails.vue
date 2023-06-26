@@ -39,6 +39,12 @@
 					</template>
 				</ul>
 			</div>
+			<div>
+				<youtube-button :href="meal.strYoutube">
+					Go to Youtube
+				</youtube-button>
+			</div>
+
 		</div>
 
 	</div>
@@ -47,6 +53,7 @@
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import axiosClient from '../axiosClient';
+import YoutubeButton from '../components/YoutubeButton.vue';
 
 const route = useRoute();
 const meal = ref({});

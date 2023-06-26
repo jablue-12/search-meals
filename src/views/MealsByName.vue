@@ -29,11 +29,9 @@
 						{{ meal.strInstructions }}
 					</p>
 					<div class="mb-4 flex justify-between items-center">
-						<a
-							class="px-3 py-2 rounded border border-red-600 hover:bg-red-600 hover:text-white transition-colors"
-							:href="meal.strYoutube"
-							target="_blank">Youtube
-						</a>
+						<youtube-button :href="meal.strYoutube">
+							Go to Youtube
+						</youtube-button>
 					</div>
 				</div>
 		</div>
@@ -42,8 +40,9 @@
 
 <script setup>
 import { computed, onMounted, ref } from 'vue';
-import store from '../store';
 import { useRoute } from 'vue-router';
+import store from '../store';
+import YoutubeButton from '../components/YoutubeButton.vue';
 
 const route = useRoute();
 const keyword = ref('');
