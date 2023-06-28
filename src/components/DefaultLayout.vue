@@ -1,7 +1,7 @@
 <template>
     <navbar/>
-    <div>
-        <main class=" bg-slate-300 ">
+    <div class="bg-slate-300">
+        <main>
 			<router-view/>
         </main>
     </div>

@@ -11,30 +11,10 @@
 
 	<div
 		class="gap-5 p-8 flex flex-wrap justify-center">
-		<div
+		<meal-item
 			v-for="meal in meals"
 			:key="meal.idMeal"
-			class="bg-white shadow rounded-t-xl max-w-xs">
-
-			<router-link :to="{name: 'mealDetails', params: {id: meal.idMeal} }">
-				<img
-					class="rounded-t-xl h-48 object-cover w-full"
-					:alt="meal.strMeal"
-					:src="meal.strMealThumb">
-			</router-link>
-
-				<div class="px-3">
-					<h3 class="font-bold">{{ meal.strMeal }}</h3>
-					<p class="mb-4 line-clamp-3">
-						{{ meal.strInstructions }}
-					</p>
-					<div class="mb-4 flex justify-between items-center">
-						<youtube-button :href="meal.strYoutube">
-							Go to Youtube
-						</youtube-button>
-					</div>
-				</div>
-		</div>
+			:meal="meal" />
 	</div>
 </template>
 
@@ -42,7 +22,7 @@
 import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import store from '../store';
-import YoutubeButton from '../components/YoutubeButton.vue';
+import MealItem from '@components/MealItem.vue';
 
 const route = useRoute();
 const keyword = ref('');

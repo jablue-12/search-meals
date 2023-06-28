@@ -1,8 +1,10 @@
 <template>
-	<div class="w-[800px] mx-auto">
+	<div class="max-w-[800px] mx-auto">
 		<h1 class="text-5xl font-bold mb-5">{{ meal.strMeal }}</h1>
-		<img :src="meal.strMealThumb" alt="meal.strMeal">
-		<div class="grid grid-cols-1 sm:grid-cols-3 text-lg py-2">
+		<img class="object-cover mx-auto max-w-[100%]" :src="meal.strMealThumb" alt="meal.strMeal">
+
+		<div>{{ meal.strInstructions }}</div>
+		<div class="flex flex-wrap justify-start gap-20 text-lg py-2">
 			<div>
 				<strong>Category:</strong> {{ meal.strCategory }}
 			</div>
@@ -14,7 +16,7 @@
 			</div>
 		</div>
 
-		<div class="grid grid-cols-1 md:grid-cols-2">
+		<div class="flex flex-wrap justify-start gap-20">
 			<div>
 				<h2 class="text-2xl font-semibold mb-2">Ingredients</h2>
 				<ul>
@@ -39,21 +41,28 @@
 					</template>
 				</ul>
 			</div>
-			<div>
-				<youtube-button :href="meal.strYoutube">
-					Go to Youtube
-				</youtube-button>
-			</div>
-
 		</div>
+		<div class="my-5 pb-5 flex flex-wrap justify-start gap-5">
+			<youtube-button
+				:href="meal.strYoutube">
+				Go to Youtube
+			</youtube-button>
 
+			<!-- TODO: create reusable component for source -->
+			<a
+				class="px-3 py-2 rounded border border-blue-600 hover:bg-blue-600 hover:text-white transition-colors"
+				:href="meal.strSource"
+				target="_blank">
+				View Original Source
+			</a>
+		</div>
 	</div>
 </template>
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import axiosClient from '../axiosClient';
-import YoutubeButton from '../components/YoutubeButton.vue';
+import YoutubeButton from '@components/YoutubeButton.vue';
 
 const route = useRoute();
 const meal = ref({});

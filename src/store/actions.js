@@ -6,3 +6,17 @@ export function searchMeals ({ commit }, keyword) {
 			commit('setSearchedMeals', data);
 		});
 }
+
+export function searchMealsByLetter ({ commit }, letter) {
+	axiosClient.get(`search.php?f=${letter}`)
+		.then(({ data }) => {
+			commit('setMealsByLetter', data);
+		});
+}
+
+export function searchMealsByIngredient ({ commit }, ingredient) {
+	axiosClient.get(`search.php?i=${ingredient}`)
+		.then(({ data }) => {
+			commit('setMealsByIngredient', data);
+		});
+}

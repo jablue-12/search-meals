@@ -11,7 +11,7 @@
 const props = defineProps({
 	href: {
 		type: String,
-		required: true
+		default: ''
 	}
 });
 
