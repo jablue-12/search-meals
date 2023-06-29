@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, watch } from 'vue';
+import { computed, onMounted, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import MealItem from '@components/MealItem.vue';
 import store from '../store';
@@ -30,7 +30,7 @@ const route = useRoute();
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const meals = computed(() => store.state.mealsByLetter);
 
-watch(() => {
+watchEffect(() => {
 	store.dispatch('searchMealsByLetter', route.params.letter);
 });
 

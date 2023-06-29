@@ -9,20 +9,14 @@
 		/>
 	</div>
 
-	<div
-		class="gap-5 p-8 flex flex-wrap justify-center">
-		<meal-item
-			v-for="meal in meals"
-			:key="meal.idMeal"
-			:meal="meal" />
-	</div>
+	<meal-list :meals="meals"/>
 </template>
 
 <script setup>
 import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import MealList from '../components/MealList.vue';
 import store from '../store';
-import MealItem from '@components/MealItem.vue';
 
 const route = useRoute();
 const keyword = ref('');
