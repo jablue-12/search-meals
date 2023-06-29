@@ -10,20 +10,14 @@
 			</router-link>
 		</div>
     </div>
-	<div
-		class="gap-5 p-8 flex flex-wrap justify-center">
-		<meal-item
-			v-for="meal in meals"
-			:key="meal.idMeal"
-			:meal="meal" />
-	</div>
 
+	<meal-list :meals="meals"/>
 </template>
 
 <script setup>
 import { computed, onMounted, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
-import MealItem from '@components/MealItem.vue';
+import MealList from '@components/MealList.vue';
 import store from '../store';
 
 const route = useRoute();
