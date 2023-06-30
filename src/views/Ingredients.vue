@@ -9,36 +9,45 @@
 			placeholder="Search for ingredients"
 		/>
 
-		<router-link
-			v-for="ingredient in filteredIngredients"
-			:key="ingredient.idIngredient"
-			:to="{name: 'byIngredient', params: {ingredient: ingredient.strIngredient}}"
-			class="block bg-white rounded-lg mb-3 p-5 shadow-md">
-			<h3 class="text-2xl font-bold mb-2">{{ ingredient.strIngredient }}</h3>
-			<p>{{ ingredient.strDescription }}</p>
-		</router-link>
+		<loader
+			:isLoading="ingredients.isLoading"/>
+
+		<div v-if="!ingredients.isLoading">
+			<router-link
+				v-for="ingredient in filteredIngredients"
+				:key="ingredient.idIngredient"
+				:to="{name: 'byIngredient', params: {ingredient: ingredient.strIngredient}}"
+				class="block bg-white rounded-lg mb-3 p-5 shadow-md">
+				<h3 class="text-2xl font-bold mb-2">{{ ingredient.strIngredient }}</h3>
+				<!-- TODO: add a view more button for description if available
+					The button will open up a modal -->
+				<p class="line-clamp-1">{{ ingredient.strDescription }}</p>
+			</router-link>
+		</div>
+
     </div>
 </template>
 
 <script setup>
 import { computed, onMounted, ref } from 'vue';
-import axiosClient from '../axiosClient';
+import Loader from '../components/Loader.vue';
+import store from '../store';
 
 const keyword = ref('');
-const ingredients = ref([]);
+const ingredients = computed(() => store.getters.ingredientList);
 
 const filteredIngredients = computed(() => {
-	if (!filteredIngredients.value) return ingredients.value;
+	if (!filteredIngredients.value) return ingredients.value.data;
 
-	return ingredients.value.filter(ingredient =>
-		(ingredient.strDescription || '').toLowerCase().includes(keyword.value.toLowerCase())
+	return ingredients.value.data.filter(ingredient =>
+		(ingredient.strIngredient || '').toLowerCase().includes(keyword.value.toLowerCase())
 	);
 });
 
 onMounted(() => {
-	axiosClient.get('list.php?i=list').then(({ data }) => {
-		ingredients.value = data.meals;
-	});
+	if (ingredients.value.data.length === 0) {
+		store.dispatch('fetchIngredientList');
+	}
 });
 
 </script>
