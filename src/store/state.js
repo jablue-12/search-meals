@@ -1,12 +1,18 @@
 export default {
-	// * TODO: Add load state here i.e.
-	/*
-	searchedMeals: {
+	ingredientList: {
 		data: [],
 		isLoading: false
 	},
-	*/
-	searchedMeals: [],
-	mealsByLetter: [],
-	mealsByIngredient: []
+	mealsByIngredient: {
+		data: [],
+		isLoading: false
+	},
+	mealsByLetter: {
+		data: [],
+		isLoading: false
+	},
+	searchedMeals: {
+		data: [],
+		isLoading: false
+	}
 };

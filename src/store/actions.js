@@ -1,22 +1,39 @@
 import axiosClient from '../axiosClient';
 
-export function searchMeals ({ commit }, keyword) {
-	axiosClient.get(`search.php?s=${keyword}`)
-		.then(({ data }) => {
-			commit('setSearchedMeals', data);
-		});
-}
+const fetchIngredientList = ({ commit }) => {
+	commit('setIngredientListLoader', true);
+	axiosClient.get('list.php?i=list').then(({ data }) => {
+		commit('setIngredientList', data);
+		commit('setIngredientListLoader', false);
+	});
+};
+const searchMeals = ({ commit }, keyword) => {
+	commit('setSearchedMealsLoader', true);
+	axiosClient.get(`search.php?s=${keyword}`).then(({ data }) => {
+		commit('setSearchedMeals', data);
+		commit('setSearchedMealsLoader', false);
+	});
+};
 
-export function searchMealsByLetter ({ commit }, letter) {
-	axiosClient.get(`search.php?f=${letter}`)
-		.then(({ data }) => {
-			commit('setMealsByLetter', data);
-		});
-}
+const searchMealsByIngredient = ({ commit }, ingredient) => {
+	commit('setMealsByIngredientLoader', true);
+	axiosClient.get(`filter.php?i=${ingredient}`).then(({ data }) => {
+		commit('setMealsByIngredient', data);
+		commit('setMealsByIngredientLoader', false);
+	});
+};
 
-export function searchMealsByIngredient ({ commit }, ingredient) {
-	axiosClient.get(`filter.php?i=${ingredient}`)
-		.then(({ data }) => {
-			commit('setMealsByIngredient', data);
-		});
-}
+const searchMealsByLetter = ({ commit }, letter) => {
+	commit('setMealsByLetterLoader', true);
+	axiosClient.get(`search.php?f=${letter}`).then(({ data }) => {
+		commit('setMealsByLetter', data);
+		commit('setMealsByLetterLoader', false);
+	});
+};
+
+export {
+	fetchIngredientList,
+	searchMeals,
+	searchMealsByIngredient,
+	searchMealsByLetter
+};

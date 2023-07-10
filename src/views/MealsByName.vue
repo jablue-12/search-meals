@@ -9,24 +9,30 @@
 		/>
 	</div>
 
-	<meal-list :meals="meals"/>
+	<loader
+		:isLoading="meals.isLoading"/>
+
+	<div v-if="!meals.isLoading">
+		<meal-list :meals="meals.data"/>
+	</div>
 </template>
 
 <script setup>
 import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import Loader from '../components/Loader.vue';
 import MealList from '../components/MealList.vue';
 import store from '../store';
 
 const route = useRoute();
 const keyword = ref('');
-const meals = computed(() => store.state.searchedMeals);
+const meals = computed(() => store.getters.searchedMeals);
 
 const searchMeals = () => {
 	if (keyword.value) {
 		store.dispatch('searchMeals', keyword.value);
 	} else {
-		store.commit('setSearchedMeals', []);
+		store.commit('setSearchedMeals', { data: { meals: [] }, isLoading: false });
 	}
 };
 

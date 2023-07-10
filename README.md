@@ -8,6 +8,9 @@
 ### TailwindCSS
 [document-guide](https://tailwindcss.com/docs/guides/vite#vue)
 
+### Spinner Library
+[document-guide](https://socket.dev/npm/package/vue3-spinner)
+
 ### PublicAPI
 [github-repo](https://github.com/public-apis/public-apis)
 
