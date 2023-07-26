@@ -28,3 +28,10 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 Get-ExecutionPolicy -List
 ```
 - To see the rules for eslint and prettier used in this project, check [.eslintrc.json](.eslintrc.json) and [.prettierrc](.prettierrc)
+
+### Useful Frontend tools
+- [Real Time Colors](https://realtimecolors.com/) for color picker
+- [Font Pair](https://www.fontpair.co/) for font picker
+- [Omatsuri](https://omatsuri.app/) providing different tools such as gradient generator, color shades generator, etc.
+- [Haikei](https://app.haikei.app/) for background images which can be saved as `SVG` or `PNG`
+- [Gradient Style](https://gradient.style/)

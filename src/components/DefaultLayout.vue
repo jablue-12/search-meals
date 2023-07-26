@@ -1,5 +1,5 @@
 <template>
-    <navbar/>
+    <navbar class="bg-[#97d3ce]"/>
 	<main>
 		<router-view/>
 	</main>
