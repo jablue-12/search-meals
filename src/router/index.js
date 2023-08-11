@@ -6,7 +6,7 @@ import Home from '@views/Home.vue';
 import Ingredients from '@views/Ingredients.vue';
 import MealDetails from '@views/MealDetails.vue';
 import MealsByIngredient from '@views/MealsByIngredient.vue';
-import MealsByLetter from '@views/MealsByLetter.vue';
+// import MealsByLetter from '@views/MealsByLetter.vue';
 import MealsByName from '@views/MealsByName.vue';
 
 const routes = [
@@ -30,11 +30,12 @@ const routes = [
 				name: 'byIngredient',
 				component: MealsByIngredient
 			},
-			{
-				path: '/by-letter/:letter?',
-				name: 'byLetter',
-				component: MealsByLetter
-			},
+			// * Deleted temporarily to have a better spacing when used in mobile
+			// {
+			// path: '/by-letter/:letter?',
+			// name: 'byLetter',
+			// component: MealsByLetter
+			// },
 			{
 				path: '/by-name/:name?',
 				name: 'byName',

@@ -1,5 +1,7 @@
 # search-meals
- Web application using vue3 with vite
+ An application designed to help users easily discover and explore a wide variety of meals based on their preferences where they have the ability to search for any meals, or by ingredients.
+ 
+ It is a web application developed using vue3 with vite.
 
 ## Installation
 1. Run `npm install` to install the required packages
