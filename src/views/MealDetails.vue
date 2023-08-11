@@ -1,10 +1,17 @@
 <template>
-	<div class="max-w-[800px] mx-auto">
+	<div
+		v-if="!isMealLoading"
+		class="max-w-[800px] mx-auto p-5">
 		<h1 class="text-5xl font-bold mb-5">{{ meal.strMeal }}</h1>
 		<img class="object-cover mx-auto max-w-[100%]" :src="meal.strMealThumb" alt="meal.strMeal">
 
-		<div>{{ meal.strInstructions }}</div>
-		<div class="flex flex-wrap justify-start gap-20 text-lg py-2">
+		<div class="mt-2">
+			<div>
+				<strong>Description:</strong>
+			</div>
+			{{ meal.strInstructions }}
+		</div>
+		<div class="flex flex-wrap justify-start gap-20 text-lg py-2 mt-2">
 			<div>
 				<strong>Category:</strong> {{ meal.strCategory }}
 			</div>
@@ -57,20 +64,30 @@
 			</a>
 		</div>
 	</div>
+
+	<loader
+		v-else
+		:is-loading="isMealLoading"/>
 </template>
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import axiosClient from '../axiosClient';
+import Loader from '../components/Loader.vue';
 import YoutubeButton from '@components/YoutubeButton.vue';
 
 const route = useRoute();
 const meal = ref({});
+const isMealLoading = ref(true);
 
 onMounted(() => {
 	axiosClient.get(`lookup.php?i=${route.params.id}`)
 		.then(({ data }) => {
 			meal.value = data.meals[0] || {};
+		}).catch(() => {
+			console.log(`Failed to retrieve the meal with id ${route.params.id}`);
+		}).finally(() => {
+			isMealLoading.value = false;
 		});
 });
 

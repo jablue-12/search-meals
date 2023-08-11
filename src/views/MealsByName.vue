@@ -9,12 +9,13 @@
 		/>
 	</div>
 
-	<loader
-		:isLoading="meals.isLoading"/>
-
 	<div v-if="!meals.isLoading">
 		<meal-list :meals="meals.data"/>
 	</div>
+
+	<loader
+		v-else
+		:isLoading="meals.isLoading"/>
 </template>
 
 <script setup>

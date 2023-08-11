@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-wrap justify-center">
+	<div class="flex flex-wrap justify-center mt-4">
 		<beat-loader
 			:loading="props.isLoading"
 			:color="props.color"/>
