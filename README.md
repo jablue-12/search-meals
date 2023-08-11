@@ -3,6 +3,8 @@
  
  It is a web application developed using vue3 with vite.
 
+ Deployed on https://search-mealz.netlify.app/
+
 ## Installation
 1. Run `npm install` to install the required packages
 2. Run `npm run dev` to run the project
