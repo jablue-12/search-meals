@@ -28,22 +28,22 @@
 				<h2 class="text-2xl font-semibold mb-2">Ingredients</h2>
 				<ul>
 					<template
-						v-for="(item, index) of new Array(20)"
+						v-for="(item, index) in mealIngredients"
 						:key="'ingredient' + index">
 						<li v-if="meal[`strIngredient${index + 1}`]">
-							{{index + 1 }}. {{meal[`strIngredient${index + 1}`]}}
+							{{index + 1 }}. {{ item }}
 						</li>
 					</template>
 				</ul>
 			</div>
 			<div>
-				<h2 class="text-2xl font-semibold mb-3">Measures</h2>
+				<h2 class="text-2xl font-semibold mb-3">Measures:</h2>
 				<ul>
 					<template
-						v-for="(item, index) of new Array(20)"
+						v-for="(item, index) in mealMeasures"
 						:key="'measure' + index">
 						<li v-if="meal[`strMeasure${index + 1}`]">
-							{{index + 1 }}. {{meal[`strMeasure${index + 1}`]}}
+							{{index + 1 }}. {{ item }}
 						</li>
 					</template>
 				</ul>
@@ -70,7 +70,7 @@
 		:is-loading="isMealLoading"/>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import axiosClient from '../axiosClient';
 import Loader from '../components/Loader.vue';
@@ -79,6 +79,31 @@ import YoutubeButton from '@components/YoutubeButton.vue';
 const route = useRoute();
 const meal = ref({});
 const isMealLoading = ref(true);
+const spaceRegex = /\s/g;
+
+const mealIngredients = computed(() => {
+	const keys = Object.keys(meal.value);
+	const ingredients = [];
+
+	keys.forEach(key => {
+		if (key.includes('strIngredient') && meal.value[key].replace(spaceRegex, '')) {
+			ingredients.push(meal.value[key]);
+		}
+	});
+	return ingredients;
+});
+
+const mealMeasures = computed(() => {
+	const keys = Object.keys(meal.value);
+	const measures = [];
+
+	keys.forEach(key => {
+		if (key.includes('strMeasure') && meal.value[key].replace(spaceRegex, '')) {
+			measures.push(meal.value[key]);
+		}
+	});
+	return measures;
+});
 
 onMounted(() => {
 	axiosClient.get(`lookup.php?i=${route.params.id}`)
