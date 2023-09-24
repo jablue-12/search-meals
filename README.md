@@ -31,4 +31,3 @@ Get-ExecutionPolicy -List
 
 
 Testing the webhook discord noti!
-new changes
