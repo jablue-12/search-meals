@@ -32,3 +32,7 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 Get-ExecutionPolicy -List
 ```
 - To see the rules for eslint and prettier used in this project, check [.eslintrc.json](.eslintrc.json) and [.prettierrc](.prettierrc)
+
+## Contributors
+
+Jared Castillo
